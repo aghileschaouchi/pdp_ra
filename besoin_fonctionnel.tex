@@ -7,6 +7,10 @@
 \usepackage{listings}
 \usepackage[french]{babel}
 \usepackage[cyr]{aeguill}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+\usepackage[colorlinks,allcolors=blue]{hyperref}
+\usepackage[numbers]{natbib}
+\bibliographystyle{plainnat} 
 
 \def\dollar{\$}
 
@@ -32,7 +36,12 @@ réalisé par \par
 Aghiles \textsc{CHAOUCHI} \par
 Nadhir \textsc{HOUARI} \par
 Anas \textsc{BELMEKKI} \par
-Mehdi \textsc{EL KHACHIR} \par
+El Mehdi \textsc{KHACHIR} \par \par
+Charger de td \par
+Pascal \textsc{DESBARATS} \par \par
+Clients \par
+Adrien \textsc{BOUSSICAULT} \par
+Pierre \textsc{LACROIX} \par
 \vfill
 
 {\large 08 janvier 2017\par}
@@ -43,18 +52,32 @@ Mehdi \textsc{EL KHACHIR} \par
 \subsection{Cas d'une lampe}
 
 \begin{itemize}
-  \item Une interface doit s'afficher sur l'écran de la tablette pointée par l'utilisateur sur le marqueur collé au-dessus de la lampe.
+  \item Une interface doit s'afficher sur l'écran de la tablette quand l'utilisateur la pointe sur le marqueur.
   \item L'état de la lampe doit être modifiable à partir de la tablette.
   \item L'utilisateur doit pouvoir allumer la lampe grâce à la tablette.
   \item L'utilisateur doit pouvoir éteindre la lampe grâce à la tablette.
+  \item L'interface doit disparaitre lorsque l'utilisateur ne pointe plus sa tablette sur le marqueur.
 \end{itemize}
 
 \subsection{Cas d'une fenêtre}
 \begin{itemize} 
-  \item Un ascenseur doit apparaître sur l'écran de la tablette pointer par l'utilisateur sur le marqueur collé au-dessus de la fenêtre.
+  \item Un ascenseur doit apparaître sur l'écran de la tablette quand l'utilisateur la pointe sur le marqueur.
   \item  L'état des volets doit être modifiable à partir de la tablette.
   \item L'utilisateur doit pouvoir faire descendre les volets grâce à la tablette.
   \item L'utilisateur doit pouvoir faire monter les volets grâce à la tablette.
+  \item L'interface doit disparaitre lorsque l'utilisateur ne pointe plus sa tablette sur le marqueur.
 \end{itemize}
- 
+
+\newpage
+\section{Elements bibliographiques}
+
+\begin{itemize}
+  \item Pour bien comprendre le concept et l'application concrète de la réalité augmentée, nous avons choisi le livre "UNDERSTANDING AUGMENTED REALITY "\cite{Ref1} qui explique le fonctionnement de la réalité augmentée, et ses différentes applications dans divers domaines.
+  \item Afin d'apprendre plus sur les cas d'utilisation de la technologie rasberry Pi, on a eu recours à cet article qui nous a éclairés sur l'utilisation de rasberry pi afin de sécuriser un domicile ainsi que sur la manière d'automatiser le fonctionnement des appareils \'electrom\'enagers \cite{Ref2}.
+  \item Afin de tester nos travaux, nous devrons avoir recours à un nano-ordinateur très certainement du type Raspberrypi, pour cela, nous avons inclus la documentation en ligne et officielle de la technologie Raspberrypi \cite{Ref3}.
+  \item Nous pouvons aussi utiliser une technologie Arduino à fin de mettre en oeuvre notre travail, pour cela, nous avons inclus la documentation en ligne et officielle de la technologie Arduino \cite{Ref4}. 
+\bibliography{bib_bibliographie.bib} %ref au fichier bib
+\end{itemize}
+
+
 \end{document}
