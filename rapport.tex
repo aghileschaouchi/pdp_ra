@@ -27,7 +27,7 @@
 {\scshape\Large Master 1 Informatique \par}
 \vspace{3cm}
 
-{\Huge\bfseries Projet de Programmation \par}%%%%%
+{\Huge\bfseries Projet de Programmation \par}%%%%
 \vspace{0.5cm}
 {\Large\itshape Réalité augmentée \par}
 
@@ -39,7 +39,7 @@ Anas \textsc{BELMEKKI} \par
 El Mehdi \textsc{KHACHIR} \par \par
 Charger de td \par
 Pascal \textsc{DESBARATS} \par \par
-Client \par
+Clients \par
 Adrien \textsc{BOUSSICAULT} \par
 \vfill
 
@@ -47,7 +47,45 @@ Adrien \textsc{BOUSSICAULT} \par
 
 \end{titlepage}
 
+\section{Introduction}
+
+\section{But du document}
+
+\section{But du projet}
+
+L'objectif de ce projet est de permettre à un utilisateur d'interagir avec son environnement à l'aide d'un système d'acquisition et de retransmission vidéo.
+
+\section{Public visé}
+
+\section{Description de la Réalité Augmentée}
+
 \section{Besoins fonctionnels}
+\begin{itemize}
+ \item Détecter la présence d'un marqueur dans le flux vidéo de la tablette quand l'application est exécutée.
+ \item Sélectionner un marqueur en cas où on en a plusieurs qui ont été capturés par la tablette, et ceci par le doigt ou via un laser.
+ \item Récupérer un marqueur, l'identifier et l'analyser.
+ \item Affecter une fonction à chaque marqueur.
+ \item Afficher sur l'écran une interface spécifique à chaque marqueur.
+ \item Capturer les manipulations effectuées sur l'interface spécifique à chaque marqueur.
+ \item Envoyer les données spécifiques à la manipulation effectuée au serveur qui se doit de changer l'état de l'appareil et ceci via un protocole de communication.
+ \item Vérifier que l'information a bien été traiter et que l'appareil à bien changer d'état après la manipulation sur le logiciel (via le protocole de communication).
+ \item Signaler sur la tablette le fait que l'appareil ait changé d'état.
+ \item Modifier l'interface graphique selon l'état de l'appareil.
+\end{itemize}
+
+\section{Besoins non-fonctionnels}
+\begin{itemize}
+  \item Facilité d'utilisation du logiciel (interface graphique intuitive, temps d'apprentissage minimal).
+  \item Fiabilité du logiciel, le logiciel doit comprendre une sûreté d'exécution à fin de ne pas abimer les appareils qu'on se doit de manipuler via le logiciel.
+  \item Maintenabilité, robustesse et modifiabilité du logiciel, le logiciel assure le traitement des erreurs via des assertions et des exceptions, ainsi que des tests associés.
+  \item Développement sous Android, donc sous langage Java (contrainte).
+  \item Utilisation de RasberryPi et d'Arduino comme outils de développements (contrainte).
+  \item Extensibilité du logiciel, à partir de besoins fonctionnels généraux on doit pouvoir étendre notre logiciel en ajoutant la gestion d'autres types d'appareils (symboliser par des marqueurs).
+  \item Portabilité du logiciel, non seulement en multiplate-forme, mais portable vers d'autres types d'appareils (tablettes, smartphones..).
+  \item Performance du logiciel, c'est-à-dire; fluidité du flux vidéo (au moins traitement de 25 images par seconde dans une tablette ou un smartphone Android).
+\end{itemize}
+
+\section{Cas d'utilisations}
 \subsection{Cas d'une lampe}
 
 \begin{itemize}
@@ -95,6 +133,24 @@ Adrien \textsc{BOUSSICAULT} \par
   \item Le mitigeur doit disparaitre de l'écran de la tablette lorsque l'utilisateur ne pointe plus sa tablette sur le marqueur.
 \end{itemize}
 
+\subsection{Cas d'un ventilateur}
+\begin{itemize} 
+  \item Une interface doit apparaître sur l'écran de la tablette quand l'utilisateur la pointe sur le marqueur.
+  \item l'état du ventilateur doit être modifiable à partir de la tablette. 
+  \item L utilisateur doit pouvoir démarrer et éteindre le ventilateur. 
+  \item L utilisateur doit pouvoir régler le degré de la ventilation.
+  \item L'interface doit disparaitre de l'écran de la tablette lorsque l'utilisateur ne pointe plus sa tablette sur le marqueur.
+\end{itemize}
+
+\subsection{Cas d'un téléviseur}
+\begin{itemize} 
+  \item Une interface doit apparaître sur l'écran de la tablette quand l'utilisateur la pointe sur le marqueur.
+  \item L utilisateur doit pouvoir changer les chaines.
+  \item L utilisateur doit pouvoir modifier le son.
+  \item L utilisateur doit pouvoir allumer et éteindre la télévision.
+  \item L'interface doit disparaitre de l'écran de la tablette lorsque l'utilisateur ne pointe plus sa tablette sur le marqueur.
+\end{itemize}
+
 \newpage
 \section{Elements bibliographiques}
 
@@ -102,9 +158,23 @@ Adrien \textsc{BOUSSICAULT} \par
   \item Pour bien comprendre le concept et l'application concrète de la réalité augmentée, nous avons choisi le livre "UNDERSTANDING AUGMENTED REALITY "\cite{Ref1} qui explique le fonctionnement de la réalité augmentée, et ses différentes applications dans divers domaines.
   \item Afin d'apprendre plus sur les cas d'utilisation de la technologie rasberry Pi, on a eu recours à cet article qui nous a éclairés sur l'utilisation de rasberry pi afin de sécuriser un domicile ainsi que sur la manière d'automatiser le fonctionnement des appareils \'electrom\'enagers \cite{Ref2}.
   \item Afin de tester nos travaux, nous devrons avoir recours à un nano-ordinateur très certainement du type Raspberrypi, pour cela, nous avons inclus la documentation en ligne et officielle de la technologie Raspberrypi \cite{Ref3}.
-  \item Nous pouvons aussi utiliser une technologie Arduino à fin de mettre en oeuvre notre travail, pour cela, nous avons inclus la documentation en ligne et officielle de la technologie Arduino \cite{Ref4}. 
-\bibliography{bib_bibliographie.bib} %ref au fichier bib
+  \item Nous pouvons aussi utiliser une technologie Arduino à fin de mettre en oeuvre notre travail, pour cela, nous avons inclus la documentation en ligne et officielle de la technologie Arduino \cite{Ref4}.
+  \item Le code QR est un type de code-barres en deux dimensions constitué de modules noirs disposés dans un carré à fond blanc. Définition et méthodes de détection d'un QR code \cite{Ref5}.
+  \item Pour pouvoir extraire une image dans un flux vidéo \cite{Ref6}.
+  \item La domotique le grand domaine de notre sujet "réalité augmentée" \cite{Ref7}.
+  \item Dans le dessin de piloter les objets nous aurons besoin de programmer un circuit arduino \cite{Ref8}.
+  \item Définition et déclenchement d'un marqueur ArUco \cite{Ref9}.
+    \item Comparaison entre les protocoles domotiques selon leur efficacité, économie et  simplicité de mise en oeuvre
+      \cite{Ref10}.
+      \item Liste de quelques applications domotique disponible sur Android
+        \cite{Ref11}.
+        \item Définitions et concept de la domotique 
+          \cite{Ref12}.
+           \item L'ouvrage "Arduino pour la domotique" permet de s'initier à la domotique avec Arduino
+             \cite{Ref13}.
+              \item "Raspberry Pi et l'ESP 8266 pour la domotique" est un ouvrage qui détaille l'utilisation de Raspberry Pi et l'ESP 8266 pour réaliser des applications de la domotique
+  \cite{Ref14}.
+    \bibliography{rapport.bib} %ref au fichier bib
 \end{itemize}
-
 
 \end{document}
