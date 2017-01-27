@@ -1,11 +1,13 @@
-\documentclass[12pt,a4paper]{article}
 
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{pgfgantt}
 \usepackage{fullpage}
 \usepackage[utf8]{inputenc}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{listings}
-\usepackage[french]{babel}
+\usepackage[french,english]{babel}
 \usepackage[cyr]{aeguill}
 \usepackage[hyphens,spaces,obeyspaces]{url}
 \usepackage[colorlinks,allcolors=blue]{hyperref}
@@ -16,7 +18,6 @@
 
 \setlength{\parindent}{2em}
 \setlength{\parskip}{1em}
-
 \newcommand{\quotes}[1]{``#1''}
 
 \begin{document}
@@ -32,24 +33,29 @@
 {\Large\itshape Réalité augmentée \par}
 
 \vfill
-réalisé par \par
+{\bfseries réalisé par} \par
 Aghiles \textsc{CHAOUCHI} \par
 Nadhir \textsc{HOUARI} \par
 Anas \textsc{BELMEKKI} \par
 El Mehdi \textsc{KHACHIR} \par \par
-Charger de td \par
+{\bfseries Charger de TD} \par
 Pascal \textsc{DESBARATS} \par \par
-Clients \par
+{\bfseries Clients} \par
 Adrien \textsc{BOUSSICAULT} \par
 \vfill
 
 {\large 08 janvier 2017\par}
 
 \end{titlepage}
-
+\tableofcontents
+\newpage
 \section{Introduction}
 
-\section{But du document}
+Depuis quelques siècles, l'homme moderne cherche à automatiser ses tâches quotidiennes qui s'avèrent répétitives.\par
+
+Dans la vie courante, il y a des tâches qui peuvent nous sembler simple, mais la domotique (nous la décrirons plus loin, dans ce document) nous a permis de les automatiser et de les simplifier.\par
+
+En se basant sur les progrès techniques de l'informatique, de l'automatisation et de l'électronique, et en ayant recours à la réalité augmentée (décrite plus loin), nous allons développer une application mobile qui nous permettra, grâce à de simples clics, d'allumer et d'éteindre une lampe, de descendre et remonter les volets d'une fenêtre, et d'ordonner l'exécution d'autres tâches similaires à distance.
 
 \section{But du projet}
 
@@ -57,33 +63,136 @@ L'objectif de ce projet est de permettre à un utilisateur d'interagir avec son 
 
 \section{Public visé}
 
-\section{Description de la Réalité Augmentée}
+Ce projet est plus particulièrement destiné aux personnes à besoins spécifiques. Mais il peut être aussi utilisé pour améliorer et simplifier les interactions entre l’homme et son environnement pour des personnes sans handicap.\par
+Le projet final pourra être testé par des personnes valides et des personnes à besoins spécifiques.
+
+\section{Définitions}
+
+\subsection{La domotique}
+``La domotique regroupe l'ensemble des techniques et technologies permettant de superviser, d'automatiser, de programmer et de coordonner les tâches de confort, de sécurité, de maintenance et plus généralement de services dans l'habitat individuel (particuliers) ou collectif (entreprises, hôpitaux, cliniques, structures spécialisées, maison de retraite...)''.\cite{Ref15}
+
+\subsection{La réalité augmentée}
+La réalité augmentée peut être considérée comme une interface entre des données numériques, que l’on qualifiera abusivement de « virtuelles », et le monde réel. Pour être plus clair, elle doit, pour nous, avoir les trois caractéristiques suivantes:
+
+Combiner le monde réel et des données numériques en temps réel.
+Être interactif en temps réel avec l’utilisateur et avec le monde réel : une modification dans le monde réel entraîne un ajustement de la couche numérique.
+Utiliser un environnement en 3D (parce nous vivons dans un monde en 3D) \cite{Ref17}.
+
+\subsection{Marqueur ArUco}
+"An ArUco marker is a synthetic square marker composed by a wide black border and a inner binary matrix which determines its identifier (id). The black border facilitates its fast detection in the image and the binary codification allows its identification and the application of error detection and correction techniques. The marker size determines the size of the internal matrix. For instance a marker size of 4x4 is composed by 16 bits."\cite{ref16}.
 
 \section{Besoins fonctionnels}
+\subsection{Traitement d'image}
+
 \begin{itemize}
- \item Détecter la présence d'un marqueur dans le flux vidéo de la tablette quand l'application est exécutée.
- \item Sélectionner un marqueur en cas où on en a plusieurs qui ont été capturés par la tablette, et ceci par le doigt ou via un laser.
- \item Récupérer un marqueur, l'identifier et l'analyser.
- \item Affecter une fonction à chaque marqueur.
- \item Afficher sur l'écran une interface spécifique à chaque marqueur.
- \item Capturer les manipulations effectuées sur l'interface spécifique à chaque marqueur.
- \item Envoyer les données spécifiques à la manipulation effectuée au serveur qui se doit de changer l'état de l'appareil et ceci via un protocole de communication.
- \item Vérifier que l'information a bien été traiter et que l'appareil à bien changer d'état après la manipulation sur le logiciel (via le protocole de communication).
- \item Signaler sur la tablette le fait que l'appareil ait changé d'état.
- \item Modifier l'interface graphique selon l'état de l'appareil.
+\item Récupérer le flux vidéo d'une webcam.[Critique]
+\item Identifier la présence de marqueurs "ArUco" dans un flux vidéo en temps réel.[Critique]
+\item Décomposer l'image qui contient le ou les marqueurs détectés, en encadrant les bords de chaque marqueur.[Critique]
+\item Transformer les marqueurs encadrés précédemment en bouton pour que l'utilisateur puisse appuyer sur le marqueur choisi comme c'est expliqué dans la section qui suit "interface Homme-machine 5.2" .[Critique]
 \end{itemize}
 
-\section{Besoins non-fonctionnels}
+\subsection{Interface homme-machine}
 \begin{itemize}
-  \item Facilité d'utilisation du logiciel (interface graphique intuitive, temps d'apprentissage minimal).
-  \item Fiabilité du logiciel, le logiciel doit comprendre une sûreté d'exécution à fin de ne pas abimer les appareils qu'on se doit de manipuler via le logiciel.
-  \item Maintenabilité, robustesse et modifiabilité du logiciel, le logiciel assure le traitement des erreurs via des assertions et des exceptions, ainsi que des tests associés.
-  \item Développement sous Android, donc sous langage Java (contrainte).
-  \item Utilisation de RasberryPi et d'Arduino comme outils de développements (contrainte).
-  \item Extensibilité du logiciel, à partir de besoins fonctionnels généraux on doit pouvoir étendre notre logiciel en ajoutant la gestion d'autres types d'appareils (symboliser par des marqueurs).
-  \item Portabilité du logiciel, non seulement en multiplate-forme, mais portable vers d'autres types d'appareils (tablettes, smartphones..).
-  \item Performance du logiciel, c'est-à-dire; fluidité du flux vidéo (au moins traitement de 25 images par seconde dans une tablette ou un smartphone Android).
+\item Associer une étiquette spécifique à chaque marqueur présent dans le flux vidéo.[Fort]
+  \begin{itemize}
+  \item Une étiquette porte le nom de l'appareil associé au marqueur.[Fort]
+  \item L'étiquette apparaît au-dessus du marqueur. [Faible]
+  \end{itemize}
+\item Sélectionner graphiquement un des marqueurs présent dans le flux vidéo par un clic enfoncé.[Critique]
+\item Associer une interface spécifique au marqueur sélectionné, intitulé au nom de l'appareil associé au marqueur.[Critique]
+  \begin{itemize}
+  \item A chaque marqueur correspond une interface, tout dépend de l'appareil.[Critique]
+  \item L'interface contient les différentes actions qu'un utilisateur peut effectuer sur l'appareil. [Fort]
+  \end{itemize}
+\item Faire apparaitre les traitements possibles dans un menu.[Critique]
+  \begin{itemize}
+  \item Un traitement est une action qu'un utilisateur peut ordonner de faire via l'application sur l'appareil associé au marqueur sélectionné.
+  \item Le menu est un menu vertical déroulant multi-niveaux.[Moyen]
+  \end{itemize}
+\item Sélectionner une ou plusieurs opérations proposées dans le menu.[Fort]
+\item Effectuer une requête au serveur qui contient des informations sur la sélection de l'utilisateur.[Critique]
+  \begin{itemize}
+  \item Les informations contenues dans la requête comprennent l'identifiant du marqueur sélectionner ainsi que le nom de l'appareil associé au marqueur sélectionné et les actions à effectuer.[Critique]
+  \end{itemize}
+\item Mettre à jour le menu à chaque changement d'état de l'appareil associé au marqueur sélectionné.[Critique]
+\item Quitter l'interface en cliquant sur un bouton configurable.[Fort]
+  \begin{itemize}
+  \item Le bouton configurable est par défaut la touche ``Echap'' ou la touche ``Retour'' pour les smartphones et les tablettes.
+  \item Le bouton peut être configuré d'une façon facile et libre.
+  \end{itemize}
 \end{itemize}
+
+\subsection{Protocoles de communications et traitement de données}
+\begin{itemize}
+\item Envoyer l'identifiant récupéré à partir du marqueur ArUco au serveur via bluetooth afin de récupérer des informations additionnelles sur l'appareil à manipuler (son type et son identifiant).[Critique]
+\item Le serveur traite une demande d'information concernant l'identifiant d'un marqueur ArUco.[Critique]
+\item Comparer le champ identifiant de chaque élément de la base de données avec l'identifiant recherché.[Critique]
+\item Récupérer tous les champs relatifs à l'élément trouvé.  [Critique]
+\end{itemize}
+
+\section{Diagramme de Gantt}
+\begin{ganttchart}[
+    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+    hgrid,vgrid]{1}{12}
+  % vgrid, hgrid]
+  
+\gantttitle{Semaines}{12}\\
+\gantttitlelist{1,...,12}{1}\\
+\ganttbar[progress=0]{Traitement d'image}{1}{2}\\
+\ganttbar[progress=0]{Interface Homme-Machine}{3}{8}\\
+\ganttbar[progress=0]{Protocoles de communications et traitement de données}{5}{12}\\
+
+\end{ganttchart} 
+
+\section{Besoins non fonctionnels}
+
+\begin{itemize}
+\item L'interface graphique assure un retour à l'utilisateur suivant les actions menées (animation, changement de couleur de bouton, son)(voir partie test).  
+\item L'application doit empêcher l'utilisation amenant à une éventuelle dégradation du matériel (griller une lampe par exemple), un test sera effectué au niveau de l'application pour contrôler l'action courante.(voir partie test).
+\item L'application doit disposer d'un temps de bon fonctionnement continue supérieure à 60 minutes, pour assurer une utilisation fluide dans le cas ou l'utilisateur veut manipuler un appareil d'une manière continue.
+\item Les fichiers temporaires seront supprimés après la fermeture de l'application, l'ensemble des données stockées sur l'appareil ne doivent pas dépasser 2 GO.
+\item Utilisation d'une base de données relationnelles légère (SQLite), moins de 300 Kio utilisé.
+\item Les données saisies par l'utilisateur via des formulaires, et qui seront stockés dans la base de données seront contrôlée pour maintenir la sécurité et la cohérence de la base. (voir Partie test).
+\item L'application sera compatible avec les plateformes : Android et Ios, en l'occurrence le développement à l'aide du Framework : Ionic.
+\end{itemize}
+
+\section{Contraintes}
+
+\begin{itemize}
+
+\item L'exécution intensive de l'application ne doit pas provoquer une utilisation gourmande au niveau des ressources de l'appareil utilisées, l'application ne doit pas accéder au plus de 2 GO de RAM (La capacité de RAM des appareils disposés pour les tests).
+\item Les frameworks utilisés doivent être libre-service, sous licence GPL ou LGPL.
+\item Définir un identifiant unique à chaque enregistrement pour maintenir l'intégrité de la base de données.
+
+\end{itemize}
+
+\section{Test}
+
+\subsection {Test IHM}
+
+\begin{itemize}
+
+  \item Le test de validation de l'interface graphique sera proposé sous la forme d'un questionnaire, ce dernier sera distribué au futur utilisateur de l'application, ainsi les réponses du questionnaire serviront à la mise à jour finale de l'interface, un score total de 60\% sera nécessaire pour approuver l'interface.	 
+  \item Le questionnaire
+  \item Q1) Le positionnement et le regroupement des boutons sont-ils cohérents ?
+  \item Q2) Combien de temps avez-vous pris pour maîtriser l'ensemble des composants IHM ?
+  \item Q3) La présentation et la mise en forme est-elle lisible ?
+  \item Q4) La navigation entre les différents menus de l'application vous semble-t-elle aisée ?
+  \item Q5) Y'a t'il des composants qui vous semblent inutiles ?
+  \item Q6) Quels sont les bugs rencontrés ?
+
+\end{itemize}
+\subsection {Test Dégradation matériel}
+\begin{itemize}
+\item Une fonction intitulée "CheckAction()" sera implémentée au niveau de l'application, cette fonction sera testée toujours avant l'exécution de l'action qui mène à un changement d'état de matériel , "CheckAction()" renvoie un boolean vrai si l'action effectuée ne présente pas un danger pour le matériel pointé, (Changement intensif de l'état d'une lampe dans une courte durée).
+\end{itemize}
+
+\subsection {Test Sécurité de la base}
+\begin{itemize}
+\item Avant d'enregistrer les informations sur la base de données on vérifie les données saisies : longueur d'enregistrement, présence des caractères spéciaux. 
+Les injections SQL menant à une modification de la base seront contré par l'utilisation de requêtes préparées.
+\end{itemize}
+
 
 \section{Cas d'utilisations}
 \subsection{Cas d'une lampe}
@@ -156,25 +265,17 @@ L'objectif de ce projet est de permettre à un utilisateur d'interagir avec son 
 
 \begin{itemize}
   \item Pour bien comprendre le concept et l'application concrète de la réalité augmentée, nous avons choisi le livre "UNDERSTANDING AUGMENTED REALITY "\cite{Ref1} qui explique le fonctionnement de la réalité augmentée, et ses différentes applications dans divers domaines.
+  \item Un lien qui nous a permit d'en apprendre plus sur la réalité augmentée \cite{Ref17}.
   \item Afin d'apprendre plus sur les cas d'utilisation de la technologie rasberry Pi, on a eu recours à cet article qui nous a éclairés sur l'utilisation de rasberry pi afin de sécuriser un domicile ainsi que sur la manière d'automatiser le fonctionnement des appareils \'electrom\'enagers \cite{Ref2}.
-  \item Afin de tester nos travaux, nous devrons avoir recours à un nano-ordinateur très certainement du type Raspberrypi, pour cela, nous avons inclus la documentation en ligne et officielle de la technologie Raspberrypi \cite{Ref3}.
-  \item Nous pouvons aussi utiliser une technologie Arduino à fin de mettre en oeuvre notre travail, pour cela, nous avons inclus la documentation en ligne et officielle de la technologie Arduino \cite{Ref4}.
-  \item Le code QR est un type de code-barres en deux dimensions constitué de modules noirs disposés dans un carré à fond blanc. Définition et méthodes de détection d'un QR code \cite{Ref5}.
+  \item Afin de tester nos travaux, nous devrons avoir recours à un nano-ordinateur très certainement du type Raspberrypi, pour cela, nous avons inclus la documentation en ligne et officielle de la technologie Raspberrypi \cite{Ref3}. 
   \item Pour pouvoir extraire une image dans un flux vidéo \cite{Ref6}.
-  \item La domotique le grand domaine de notre sujet "réalité augmentée" \cite{Ref7}.
-  \item Dans le dessin de piloter les objets nous aurons besoin de programmer un circuit arduino \cite{Ref8}.
+  \item La domotique le grand domaine de notre sujet "réalité augmentée" \cite{Ref7}. 
   \item Définition et déclenchement d'un marqueur ArUco \cite{Ref9}.
-    \item Comparaison entre les protocoles domotiques selon leur efficacité, économie et  simplicité de mise en oeuvre
-      \cite{Ref10}.
-      \item Liste de quelques applications domotique disponible sur Android
-        \cite{Ref11}.
-        \item Définitions et concept de la domotique 
-          \cite{Ref12}.
-           \item L'ouvrage "Arduino pour la domotique" permet de s'initier à la domotique avec Arduino
-             \cite{Ref13}.
-              \item "Raspberry Pi et l'ESP 8266 pour la domotique" est un ouvrage qui détaille l'utilisation de Raspberry Pi et l'ESP 8266 pour réaliser des applications de la domotique
-  \cite{Ref14}.
-    \bibliography{rapport.bib} %ref au fichier bib
+  \item Comparaison entre les protocoles domotiques selon leur efficacité, économie et  simplicité de mise en oeuvre\cite{Ref10}.
+  \item Liste de quelques applications domotique disponible sur Android\cite{Ref11}.
+  \item Définitions et concept de la domotique\cite{Ref12}.
+  \item "Raspberry Pi et l'ESP 8266 pour la domotique" est un ouvrage qui détaille l'utilisation de Raspberry Pi et l'ESP 8266 pour réaliser des applications de la domotique\cite{Ref14}.
+  \bibliography{rapport.bib} %ref au fichier bib
 \end{itemize}
 
 \end{document}
