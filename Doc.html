@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Augmented Reality</title>
+	<style>
+	body{
+		width:100%;
+		height:100%;
+		margin:0;
+		padding:0;
+	}
+	#parent{
+		background:#756969;
+		width:100%;
+		height:100%;
+		display:table;
+		border-collapse:collapse;
+	}
+	#parent div{
+		display:table-cell;
+		padding-top:0px;
+	}
+	#sidebar{
+		position:fixed;
+		width:25%;
+		height:100%;
+		background:#756969;
+		color:#fff;
+	}
+	#main-content{
+		background:#ccc;
+		padding-left: 100px;
+		padding-top:0;
+		width: 75%;
+		margin:0;
+	}
+	div #code{
+		color: #fff;
+		background-color: #565656;
+		border: 1px inset #afafaf;
+		padding: 20px;
+		margin: 10px;
+		width: 700px;
+	}
+	h3{
+		color:crimson;
+	}
+
+	#sidelist li{
+		margin-left: -40px;
+		margin-top: 10px;
+		padding: 10px;
+		padding-left: 30px;
+		list-style-type: none;
+		border-bottom: 0.1px solid #a78888;
+
+	}
+	#sidelist li:hover{
+		cursor: pointer;
+		margin-top: 10px;
+		padding-top: 10px;
+		list-style-type: none;
+		background-color: #ae9797;
+	}
+	#sidebar a{
+		color:white;
+		text-decoration: none;
+	}
+	a:link {
+		text-decoration: none;
+	}
+
+	a:visited {
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	a:active {
+		text-decoration: underline;
+	}
+	</style>
+</head>
+<body>
+	<div id="parent">
+		<div id="sidebar"><br>
+
+			<ul id="sidelist">
+				<li><a href="#installIonCord" > How to install Ionic & Cordova environment</a></li>
+				<li><a href="#howdoesitwork" > How does it work</a></li>
+				<li><a href="#howToRunTheApp">How to run our application</a></li>
+				<li><a href="#HardwareServer">Hardware and communication parts</a></li>
+				<li><a href="#ourWork" > Our work</a></li>
+			</ul>  
+
+		</div>
+		<div id="main-content"><br>
+			<ul>
+				<li id="installIonCord"><h3>How to install Ionic & Cordova environment</h3>
+					<ul>
+						<li>Install NodeJS
+							<p>To install Cordova & Ionic, make sure you have <a href="http://nodejs.org/">Node.js</a> installed, if not run:
+								<div id="code">
+									&nbsp; <code>$ sudo apt-get update</code>
+									<br> &nbsp; <code>$ sudo apt-get install nodejs npm</code>
+								</div>
+							</p>
+
+
+						</li>
+						<li>Install Cordova
+							<p>To install it, simply run:
+								<div id="code">
+									&nbsp; <code>$ sudo npm install -g cordova</code>
+								</div>
+							</p>
+
+
+						</li>
+						<li>Install Ionic
+							<p>To install it, simply run:
+								<div id="code">
+									&nbsp; <code>$ sudo npm install -g ionic </code>
+								</div>
+							</p>
+
+						</li>
+						<li>Install bower
+							<p>To install it, simply run:
+								<div id="code">
+									&nbsp; <code>$ sudo npm install -g bower </code>
+								</div>
+							</p>
+							<p>
+								Why <code>bower</code>  ?. <code>Bower</code> is a package manager a bit like <code>npm</code>, but for web libraries and we will need it when adding Java Script libraries to our project.
+							</p>
+
+						</li>
+						<li>Install gulp
+							<p>To install it, simply run:
+								<div id="code">
+									&nbsp; <code>$ sudo npm install -g gulp </code>
+								</div>
+							</p>
+							<p>
+								Why <code>gulp</code> ?. <code>Gulp</code> is a Java Script build tool that is used by ionic for some building needs for our project.
+							</p>
+
+						</li>
+					</ul>
+				</li>
+				<li id="howdoesitwork"><h3>How does it work</h3>
+					<ul>
+						<li>Create the project
+
+							<p>Now, we need to create a new Cordova project somewhere on the computer for the code for our app:
+								<div id="code">
+									&nbsp; <code>$ ionic start todo blank</code>
+								</div>
+							</p>
+
+							<p>That will create a folder called <code>todo</code> in the directory the command was run. Next, we will go into that directory and list the contents. Here is what the outer structure of your Ionic project will look like:</p>
+							<div id="code">
+								<pre><code>$ cd todo &amp;&amp; ls
+
+├── bower.json     // bower dependencies
+├── config.xml     // cordova configuration
+├── gulpfile.js    // gulp tasks
+├── hooks          // custom cordova hooks to execute on specific commands
+├── ionic.project  // ionic configuration
+├── package.json   // node dependencies
+├── platforms      // iOS/Android specific builds will reside here
+├── plugins        // where your cordova/ionic plugins will be installed
+├── scss           // scss code, which will output to www/css/
+└── www            // application - JS code and libs, CSS, images, etc.
+								</code></pre>
+							</div>
+						</li>
+						<li>Configure Platforms
+							<p>Now, we need to tell ionic that we want to enable the iOS and Android platforms. Note: unless you are on MacOS, leave out the iOS platform:
+								<div id="code">
+									<code>$ ionic platform add android</code>
+									<br><code>$ ionic platform add ios</code>
+								</div>
+							</p>
+						</li>
+						<li>Test it out
+							<p>Just to make sure the default project worked, try building and running the project (substitute android for ios to build for Ios instead):
+								<div id="code">
+									<code>$ ionic build android</code>
+									<br><code>$ ionic emulate android</code>
+								</div>
+							</p>
+							<p>To build and run the project in a real device (substitute android for ios to build for IOS instead):
+								<div id="code">
+									<code>$ ionic run android</code>
+								</div>
+							</p>
+						</li>
+					</ul>
+				</li>
+				<li id="howToRunTheApp"> <h3>How to run the application</h3>
+					<ul>
+						<li>
+							<p>After setting up the framework, clone the code reposity, open the terminal and run this :
+								<div id="code">
+									<br>
+									<code>$ git clone https://github.com/aghileschaouchi/pdp_ra</code>
+									<br>
+								</div>
+							</p>
+						</li>
+						<li>
+							<p>Then, go to the folder "pdp_ra/realiteAugmentee/"	
+								<div id="code">
+									<br>
+									<code>$ cd pdp_ra/realiteAugmentee</code>
+									<br>
+								</div>
+							</p>	
+						</li>
+						<li>
+							<p>	Add the android platform to the project, by running	
+								<div id="code">
+									<br>
+									<code>$ ionic platforms add android</code>
+									<br>
+								</div>
+							</p>	
+						</li>
+						<li>
+							<p>	Let's add some line to the code, open the file "realitééAugmentee/platforms/android/AndroidManifest.xml" with any text-editor, and add these lines inside <code> &lt;manifest> ... &lt;/manifest></code>.	
+								<div id="code">
+									<br>
+									<code>     
+										&lt;uses-permission android:name="android.permission.CAMERA"/><br>
+									   	&lt;uses-feature android:name="android.hardware.camera" android:required="true"/><br>
+									    &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/><br>
+									    &lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/><br>
+									    &lt;uses-feature android:name="android.hardware.camera.any"/><br>
+									</code>
+									<br>
+								</div>
+							</p>	
+						</li>
+						<li>
+							<p>	Finally you can run the application on your android device, but first you need to activate debugging mode android, and tape the magic words to install the application:	
+								<div id="code">
+									<br>
+									<code>$ ionic run android</code>
+									<br>
+								</div>
+								Go to the application setting and allowed the using of the camera.
+							</p>
+						</li>
+						<li>
+							<p>	Or, you can also run it on your computer, by running :	
+								<div id="code">
+									<br>
+									<code>$ ionic serve --address localhost</code>
+									<br>
+								</div>
+								Enjoy it.
+							</p>
+						</li>
+					</ul>
+				</li>
+				<li id="HardwareServer"><h3>Hardware and communication parts</h3>
+					<ul>
+						<li>Install the Os on Raspberry Pi 3  Model B from a Windows (7 or above) PC.
+							<p>First of all, download RASPBIAN image form this
+								<a href ="https://www.raspberrypi.org/downloads/raspbian/">  link</a>, and extract it.
+							</p> 
+							<p> Now insert the SD card (4GB minimum) on your computer, and run <b>Win32DiskImager</b>, if you don't have 
+								&nbsp; it yet, 
+								<a href="https://sourceforge.net/projects/win32diskimager/">download it </a>
+							</p>
+							<p>
+								Run <b>Win32DiskImager</b>, select the image that you have extracted earlier, and choose your SD card, 
+								from the device box, now click <b>write</b> and wait until the task finish.</p>
+								<p>
+									Raspbian is now installed on your SD card.
+								</p>
+							</li> 
+							<li> Control the Raspberry with SSH protocol
+								<p>
+									To connect on Rasbperry with SSH on Windows, type (Windows+x) and go to  <b>Network Connections</b> menu
+									, choose any ethernet interface and allow sharing connection by checking the two first radio buttons.	  			 
+								</p>
+								<p>
+									Windows assign automaticly an ip address on the ethernet you have choosen earlier, by default the ip adrress is 192.168.137.1. 
+								</p>
+								<p>
+									Now enter the previous ip address on a SSH client, (<a href="http://www.putty.org/"> Putty</a> for example), select SSH connection on Port 22.
+								</p>
+								<p>
+									Enter the login and the password : (pi, raspberry) by default, now you are connected to the Raspberry via SSH.  
+								</p>
+							</li>
+							<li>
+								Connect the Raspberry to internet
+								<p>
+									First scan Wifi-Network, to get ssid(name of network).
+									<div id="code">
+										sudo iwlist wlan0 scan
+									</div>
+								</p>
+								<p>
+									Now open the file <b>sudo nano /etc/wpa-supplicant/wpasupplicant.conf</b> and type : 
+									<div id="code">
+										network={ <br>
+										ssid="your_wifi_name"<br>
+										psk="your_password"<br>
+									}
+								</div>
+							</p>
+						</li>
+						<li>
+							Turn on the LED with the Raspberry : 
+							<p>
+								To realize the electronic circuit, please reffer to the <a href="https://thepihut.com/blogs/raspberry-pi-tutorials/27968772-turning-on-an-led-with-your-raspberry-pis-gpio-pins">link</a>, all step are well described.
+							</p>
+							<p>
+								Install the <a href="https://pypi.python.org/pypi/RPi.GPIO">RPi.GPIO</a> Framework to manipulate the pinouts ports of the Raspberry
+								<div id="code">
+									sudo apt -get install python -dev python -rpi. gpio
+								</div>
+							</p>
+						</li>
+						<li>
+							Server part
+							<p>
+								Install the <a href="https://pypi.python.org/pypi/paho-mqtt/1.1">Paho</a> Framework that implements the MQTT protocol on the Raspberry 
+								<div id="code">
+									pip install paho-mqtt
+								</div>
+							</p>
+							<p>
+								In order to use the MQTT protocol in the Ionic app, include this link in the Javascript code :
+								<div id="code">
+									"https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" 
+								</div>
+							</p>
+						</li>
+					</ul>
+				<li id="ourWork"><h3>Our work</h3>
+					<ul>To make the difference between what we code and what it was given by the framwork
+						<li>
+							<code>www/index.html</code>
+						</li>
+						<li>
+							<code>www/js/actionBar.js</code>
+						</li>
+						<li>
+							<code>www/js/interfaces.js</code>
+						</li>
+						<li>
+							<code>www/js/interfacesData.js</code>
+						</li>
+						<li>
+							<code>www/js/imageProcessing.js</code>
+						</li>
+						<li>
+							<code>www/js/toServer.js</code>
+						</li>
+						<li>
+							<code>www/js/tools.js</code>
+						</li>
+					</ul>
+				</li>
+			</ul>  
+		</div>
+	</div>     
+</body>
+</html> 
